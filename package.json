@@ -5,6 +5,8 @@
     "repository": "git@github.com-PracticeEveryday:PracticeEveryday/typescript-start-kit.git",
     "license": "MIT",
     "scripts": {
+        "prepare": "husky install",
+        "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
         "build": "rm -rf dist && npx tsc --project tsconfig.json",
         "start:dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/bin/index.ts",
         "start:prod": "yarn run build && cross-env NODE_ENV=production node ./dist/bin/index.js"
@@ -24,6 +26,7 @@
         "@types/morgan": "^1.9.4",
         "@types/node": "^18.14.6",
         "dotenv": "^16.0.3",
+        "husky": "^8.0.3",
         "ts-node": "^10.9.1"
     }
 }
