@@ -6,6 +6,7 @@ import express, { Request, Response } from 'express';
 import { errorMiddleware } from './lib/middlewares/error.middleware';
 import { asyncWrapper } from './lib/middlewares/async-wrapper.middleware';
 import { BadRequestError } from './lib/errors/bad-request.error';
+import { NotFoundError } from './lib/errors/not-found.error';
 
 const app = express();
 
@@ -32,6 +33,14 @@ app.get(
     '/error/custom',
     asyncWrapper((_req: Request, _res: Response) => {
         throw new BadRequestError('커스텀 에러 테스트');
+    }),
+);
+
+//에러 페이지 로드 404
+app.get(
+    '/*',
+    asyncWrapper((_req: Request, _res: Response) => {
+        throw new NotFoundError('커스텀 에러 테스트 not found');
     }),
 );
 

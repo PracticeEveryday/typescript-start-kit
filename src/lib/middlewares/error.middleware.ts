@@ -5,7 +5,7 @@ export const errorMiddleware = (error: any, _req: Request, res: Response, _next:
     res.header('Content-Type', 'application/json');
     console.log('\x1b[33m%s\x1b[0m', error);
 
-    const statusCode = error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR;
+    const statusCode = error.statusCode || StatusCodes.ERRIR_INTERNAL_SERVER_ERROR;
 
     res.status(statusCode).json({
         statusCode,
