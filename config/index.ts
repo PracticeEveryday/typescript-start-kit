@@ -1,9 +1,9 @@
-import * as dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 
-const envFound = dotenv.config()
+const envFound = dotenv.config();
 
 if (envFound.error) {
-  throw new Error(".env 파일이 없습니다!!");
+  throw new Error('.env 파일이 없습니다!!');
 }
 
 // const MONGO_URL = process.env["MONGO_URL"];
@@ -18,5 +18,5 @@ if (envFound.error) {
 
 export default {
   // 백엔드 포트번호
-  PORT: process.env["PORT"] || 5000,
+  PORT: process.env['PORT'] || 5000,
 };
