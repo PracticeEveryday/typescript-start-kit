@@ -1,8 +1,9 @@
-import config from '../config/index';
 import cors from 'cors';
 import morgan from 'morgan';
-import express, { Request, Response } from 'express';
 import helmet from 'helmet';
+import express, { Request, Response } from 'express';
+
+import { errorMiddleware } from './middlewares/error.middleware';
 
 const app = express();
 
@@ -18,8 +19,10 @@ app.get('/', (_req: Request, res: Response) => {
     });
 });
 
-const port = +config.PORT || 3000;
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.get('/error', (_req: Request, _res: Response) => {
+    throw new Error('에러 테스트');
 });
+
+app.use(errorMiddleware);
+
+export { app };
