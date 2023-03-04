@@ -7,7 +7,6 @@ export class NotFoundError extends CustomError {
 
     constructor(message: string) {
         super(message);
-        // StatusCodes는 열거형(enum) 데이터, BAD_REQUEST: 400
         this.statusCode = StatusCodes.ERROR_NOT_FOUND;
     }
 }

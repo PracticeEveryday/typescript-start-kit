@@ -4,9 +4,9 @@ import helmet from 'helmet';
 import express, { Request, Response } from 'express';
 
 import { errorMiddleware } from './lib/middlewares/error.middleware';
-import { asyncWrapper } from './lib/middlewares/async-wrapper.middleware';
-import { BadRequestError } from './lib/errors/bad-request.error';
+import { asyncWrapper } from './lib/utils/async-wrapper.util';
 import { NotFoundError } from './lib/errors/not-found.error';
+import { BadRequestError } from './lib/errors/bad-request.error';
 
 const app = express();
 
@@ -16,33 +16,29 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (_req: Request, res: Response) => {
-    res.json({
+app.get('/', (_req: Request, res: Response): void => {
+    res.status(200).json({
         message: 'Hello, this is Node.js, Express.js and TypeScript.',
     });
 });
 
 app.get(
     '/error',
-    asyncWrapper((_req: Request, _res: Response) => {
-        throw new Error('에러 테스트');
+    asyncWrapper(async (_req: Request, _res: Response): Promise<void> => {
+        return new Promise(() => {
+            throw new Error('에러 테스트');
+        });
     }),
 );
 
-app.get(
-    '/error/custom',
-    asyncWrapper((_req: Request, _res: Response) => {
-        throw new BadRequestError('커스텀 에러 테스트');
-    }),
-);
+app.get('/error/custom', (_req: Request, _res: Response): void => {
+    throw new BadRequestError('커스텀 에러 테스트');
+});
 
 //에러 페이지 로드 404
-app.get(
-    '/*',
-    asyncWrapper((_req: Request, _res: Response) => {
-        throw new NotFoundError('커스텀 에러 테스트 not found');
-    }),
-);
+app.get('/*', (_req: Request, _res: Response): void => {
+    throw new NotFoundError('커스텀 에러 테스트 not found');
+});
 
 app.use(errorMiddleware);
 
