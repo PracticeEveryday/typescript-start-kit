@@ -3,10 +3,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import express, { Request, Response } from 'express';
 
-import { errorMiddleware } from './lib/middlewares/error.middleware';
+import { errorMiddleware } from './common/middlewares/error.middleware';
 import { asyncWrapper } from './lib/utils/async-wrapper.util';
-import { NotFoundError } from './lib/errors/not-found.error';
-import { BadRequestError } from './lib/errors/bad-request.error';
+import { NotFoundError } from './common/errors/not-found.error';
+import { BadRequestError } from './common/errors/bad-request.error';
 
 const app = express();
 
