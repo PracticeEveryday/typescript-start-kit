@@ -29,7 +29,7 @@
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",                                
-    "rootDir": "./src",                                  
+                                     
     "sourceMap": true,                                
     "outDir": "./dist",                                   
     "esModuleInterop": true,                                   
