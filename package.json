@@ -5,9 +5,10 @@
   "repository": "git@github.com-PracticeEveryday:PracticeEveryday/typescript-start-kit.git",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --exec ts-node index.ts"
+    "start:dev": "cross-env NODE_ENV=development nodemon --exec ts-node index.ts"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "typescript": "^4.9.5"
   },
