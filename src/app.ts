@@ -3,7 +3,9 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import express, { Request, Response } from 'express';
 
-import { errorMiddleware } from './middlewares/error.middleware';
+import { errorMiddleware } from './lib/middlewares/error.middleware';
+import { asyncWrapper } from './lib/middlewares/async-wrapper.middleware';
+import { BadRequestError } from './lib/errors/bad-request.error';
 
 const app = express();
 
@@ -19,9 +21,19 @@ app.get('/', (_req: Request, res: Response) => {
     });
 });
 
-app.get('/error', (_req: Request, _res: Response) => {
-    throw new Error('에러 테스트');
-});
+app.get(
+    '/error',
+    asyncWrapper((_req: Request, _res: Response) => {
+        throw new Error('에러 테스트');
+    }),
+);
+
+app.get(
+    '/error/custom',
+    asyncWrapper((_req: Request, _res: Response) => {
+        throw new BadRequestError('커스텀 에러 테스트');
+    }),
+);
 
 app.use(errorMiddleware);
 
