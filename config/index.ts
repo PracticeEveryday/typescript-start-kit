@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 
-const envFound = dotenv.config();
+const envFound = dotenv.config()
 
 if (envFound.error) {
   throw new Error(".env 파일이 없습니다!!");
@@ -19,10 +19,4 @@ if (envFound.error) {
 export default {
   // 백엔드 포트번호
   PORT: process.env["PORT"] || 5000,
-
-  // 데이터베이스 URI
-//   MONGO_URL,
-
-  // jwt key
-//   JWT_KEY,
 };
