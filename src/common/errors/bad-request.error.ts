@@ -1,6 +1,7 @@
 import { CustomError } from './custom.error';
 import { StatusCodes } from './statusCode.enum';
 
+// 400 code
 export class BadRequestError extends CustomError {
     protected statusCode: number;
 

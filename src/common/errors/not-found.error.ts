@@ -1,7 +1,7 @@
 import { CustomError } from './custom.error';
 import { StatusCodes } from './statusCode.enum';
 
-// 400 code
+// 404 code
 export class NotFoundError extends CustomError {
     protected statusCode: number;
 

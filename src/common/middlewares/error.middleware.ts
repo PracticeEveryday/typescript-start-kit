@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { StatusCodes } from '../errors/statusCode.enum';
 
-export const errorMiddleware = (error: any, _req: Request, res: Response, _next: NextFunction) => {
+export const errorMiddleware = (error: any, _req: Request, res: Response) => {
     res.header('Content-Type', 'application/json');
     console.log('\x1b[33m%s\x1b[0m', error);
 
