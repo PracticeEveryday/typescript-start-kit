@@ -3,10 +3,7 @@ import { StatusCodes } from './statusCode.enum';
 
 // 400 code
 export class BadRequestError extends CustomError {
-    protected statusCode: number;
-
     constructor(message: string) {
-        super(message);
-        this.statusCode = StatusCodes.ERROR_BAD_REQUEST;
+        super(message, StatusCodes.ERROR_BAD_REQUEST);
     }
 }
