@@ -12,6 +12,11 @@ export const errorMiddleware = (error: unknown, _req: Request, res: Response, _n
             statusCode,
             message: error.message,
         });
+    } else if (error instanceof TypeError) {
+        res.status(StatusCodes.ERROR_BAD_REQUEST).json({
+            errorMessage: error.message,
+            errorCode: StatusCodes.ERROR_BAD_REQUEST,
+        });
     } else if (error instanceof Error) {
         let message = 'Unknown Error';
 

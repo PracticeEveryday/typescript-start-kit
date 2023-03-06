@@ -6,6 +6,7 @@ import { NextFunction, Response, Request } from 'express';
  * @returns Express 라우터 기본 형식
  */
 export const asyncWrapper = (fn: unknown) => {
+    if (typeof fn !== 'function') throw new TypeError('funtion 타입 말고는 들어올 수 없습니다.');
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             if (typeof fn === 'function') {
