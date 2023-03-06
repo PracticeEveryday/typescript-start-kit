@@ -5,10 +5,12 @@ import { NextFunction, Response, Request } from 'express';
  * @param fn async await 함수
  * @returns Express 라우터 기본 형식
  */
-export const asyncWrapper = (fn: any) => {
+export const asyncWrapper = (fn: unknown) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            await fn(req, res, next);
+            if (typeof fn === 'function') {
+                await fn(req, res, next);
+            }
         } catch (error) {
             next(error);
         }

@@ -17,5 +17,7 @@ module.exports = {
         semi: ['error', 'always'],
         'no-constant-condition': 'off',
         'linebreak-style': [0, 'error', 'windows'],
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
 };
