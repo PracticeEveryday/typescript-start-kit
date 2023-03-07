@@ -2,7 +2,7 @@
 
 ## 소개
 
--   TypeScript Express 프레임워크를 사용하여 서버를 바로 실행시킬 수 있는 최소한의 Start Kit입니다.
+-   TypeScript Express 프레임워크를 사용하여 서버를 바로 실행시키는 Startkit입니다.
 
 ### npx로 한 번에 실행하기
 
