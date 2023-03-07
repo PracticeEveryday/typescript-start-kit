@@ -7,6 +7,7 @@
 ### npx로 한 번에 실행하기
 
 -   `npx typescript-startkit [repoName]`
+    -   링크: https://www.npmjs.com/package/typescript-startkit
 
 ### git clone 후 실행하기
 
