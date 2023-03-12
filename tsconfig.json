@@ -9,8 +9,8 @@
         "strictNullChecks": true,
         "strictBindCallApply": true,
         "strictFunctionTypes": true,
-        "strictPropertyInitialization": true,
         "useUnknownInCatchVariables": true,
+        "strictPropertyInitialization": true,
 
         // No unused code (4)
         "noUnusedLocals": true,
@@ -19,20 +19,22 @@
         "allowUnreachableCode": false,
 
         // No implicit code (2)
-        "noImplicitOverride": true,
         "noImplicitReturns": true,
+        "noImplicitOverride": true,
 
         // Others (5)
         "noUncheckedIndexedAccess": true,
-        "noPropertyAccessFromIndexSignature": true,
         "noFallthroughCasesInSwitch": true,
         "exactOptionalPropertyTypes": true,
         "forceConsistentCasingInFileNames": true,
+        "noPropertyAccessFromIndexSignature": true,
         "module": "commonjs",
 
         "sourceMap": true,
         "outDir": "./dist",
+        "skipLibCheck": true,
         "esModuleInterop": true,
-        "skipLibCheck": true
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
     }
 }

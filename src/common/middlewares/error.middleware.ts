@@ -9,13 +9,13 @@ export const errorMiddleware = (error: unknown, _req: Request, res: Response, _n
         const statusCode = error.statusCode || StatusCodes.ERRIR_INTERNAL_SERVER_ERROR;
 
         res.status(statusCode).json({
-            statusCode,
-            message: error.message,
+            errorCode: statusCode,
+            errorMessage: error.message,
         });
     } else if (error instanceof TypeError) {
         res.status(StatusCodes.ERROR_BAD_REQUEST).json({
-            errorMessage: error.message,
             errorCode: StatusCodes.ERROR_BAD_REQUEST,
+            errorMessage: error.message,
         });
     } else if (error instanceof Error) {
         let message = 'Unknown Error';
@@ -26,8 +26,8 @@ export const errorMiddleware = (error: unknown, _req: Request, res: Response, _n
         }
 
         res.status(StatusCodes.ERRIR_INTERNAL_SERVER_ERROR).json({
-            errorMessage: message,
             errorCode: StatusCodes.ERRIR_INTERNAL_SERVER_ERROR,
+            errorMessage: message,
         });
     }
 };
