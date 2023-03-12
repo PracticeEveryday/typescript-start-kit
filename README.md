@@ -26,3 +26,43 @@
 4. `yarn start:prod`
 
 ---
+
+### Test API
+
+-   `GET /`
+
+```js
+// response
+{
+  "message": "Hello, this is Node.js, Express.js and TypeScript."
+}
+```
+
+**Error Test**
+
+-   `GET /error`
+
+```js
+{
+  "errorCode": 500,
+  "errorMessage": "에러 테스트"
+}
+```
+
+-   `GET /error/Custom`
+
+```js
+{
+  "errorCode": 400,
+  "errorMessage": "커스텀 에러 테스트"
+}
+```
+
+-   `GET /a`
+
+```js
+{
+  "errorCode": 404,
+  "errorMessage": "커스텀 에러 테스트 not found"
+}
+```
