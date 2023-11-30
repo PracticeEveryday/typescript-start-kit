@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { CustomError } from '../errors/custom.error';
+import { CustomError } from '../errors';
 import { StatusCode } from '../dataType/statusCode.enum';
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
@@ -19,6 +19,7 @@ const generateCodeAndBody = (error: unknown) => {
 
     if (error instanceof Error) {
         statusCode = StatusCode.INTERNAL_SERVER_ERROR;
+        message = error.message || '핸들링 할 수 없는 에러입니다. 확인 부탁드립니다 :)';
     }
 
     if (error instanceof CustomError) {

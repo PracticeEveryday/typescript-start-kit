@@ -6,6 +6,7 @@ import express, { Request, Response } from 'express';
 import { errorMiddleware } from './common/middlewares/error.middleware';
 
 import * as CustomError from './common/errors';
+import { StatusCode } from './common/dataType/statusCode.enum';
 
 
 const app = express();
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (_req: Request, res: Response): void => {
-    res.status(200).json({
+    res.status(StatusCode.OK).json({
         message: 'Hello, this is Node.js, Express.js and TypeScript.',
     });
 });
@@ -32,7 +33,7 @@ app.get('/error/custom', (_req: Request, _res: Response): void => {
 
 //에러 페이지 로드 404
 app.get('/*', (_req: Request, _res: Response): void => {
-    throw new CustomError.NotFound('커스텀 에러 테스트 not found');
+    throw new CustomError.NotFound('Not Found Endpoint');
 });
 
 app.use(errorMiddleware);
