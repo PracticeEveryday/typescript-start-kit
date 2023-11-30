@@ -1,33 +1,35 @@
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors/custom.error';
-import { StatusCodes } from '../errors/statusCode.enum';
+import { StatusCode } from '../errors/statusCode.enum';
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
     res.header('Content-Type', 'application/json');
     console.log('\x1b[33m%s\x1b[0m', error);
-    if (error instanceof CustomError) {
-        const statusCode = error.statusCode || StatusCodes.ERRIR_INTERNAL_SERVER_ERROR;
 
-        res.status(statusCode).json({
-            errorCode: statusCode,
-            errorMessage: error.message,
-        });
-    } else if (error instanceof TypeError) {
-        res.status(StatusCodes.ERROR_BAD_REQUEST).json({
-            errorCode: StatusCodes.ERROR_BAD_REQUEST,
-            errorMessage: error.message,
-        });
-    } else if (error instanceof Error) {
-        let message = 'Unknown Error';
+    const {statusCode, message} = generateCodeAndBody(error);
 
-        if (error instanceof Error) {
-            message = error.message;
-            error.name;
-        }
+    res.status(statusCode).json({
+        message
+    });
+};
 
-        res.status(StatusCodes.ERRIR_INTERNAL_SERVER_ERROR).json({
-            errorCode: StatusCodes.ERRIR_INTERNAL_SERVER_ERROR,
-            errorMessage: message,
-        });
+const generateCodeAndBody = (error: unknown) => {
+    let statusCode = StatusCode.ERROR_INTERNAL_SERVER_ERROR;
+    let message = '핸들링 할 수 없는 에러입니다. 확인 부탁드립니다 :)';
+
+    if (error instanceof Error) {
+        statusCode = StatusCode.ERROR_INTERNAL_SERVER_ERROR;
     }
+
+    if (error instanceof CustomError) {
+        statusCode = error.statusCode || StatusCode.ERROR_INTERNAL_SERVER_ERROR;
+        message = error.message;
+    }
+
+    if (error instanceof TypeError) {
+        statusCode = StatusCode.ERROR_BAD_REQUEST;
+        message = error.message;
+    }
+
+    return { statusCode, message };
 };

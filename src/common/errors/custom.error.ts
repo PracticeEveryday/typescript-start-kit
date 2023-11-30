@@ -1,8 +1,8 @@
-import { StatusCodes } from './statusCode.enum';
+import { StatusCode } from './statusCode.enum';
 
 class CustomError extends Error {
-    public statusCode: StatusCodes;
-    constructor(message: string, statusCode: StatusCodes) {
+    public statusCode: StatusCode;
+    constructor(message: string, statusCode: StatusCode) {
         super(message);
         this.statusCode = statusCode;
     }

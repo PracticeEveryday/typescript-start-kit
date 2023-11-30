@@ -6,10 +6,10 @@
     "license": "MIT",
     "bin": "./bin/index.js",
     "scripts": {
-        "prepare": "husky install",
+        "prepare": "[ ! -d .husky ] && husky install || echo \"Husky directory already exists\"",
         "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
         "build": "rm -rf dist && npx tsc --project tsconfig.json",
-        "postinstall": "npx husky install",
+        "postinstall": "[ ! -d .husky ] && npx husky install || echo \"Husky directory already exists\"",
         "start:dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/bin/index.ts",
         "start:prod": "yarn run build && cross-env NODE_ENV=production node ./dist/src/bin/index.js"
     },

@@ -5,8 +5,8 @@ import express, { Request, Response } from 'express';
 
 import { errorMiddleware } from './common/middlewares/error.middleware';
 import { asyncWrapper } from './lib/utils/async-wrapper.util';
-import { NotFoundError } from './common/errors/not-found.error';
-import { BadRequestError } from './common/errors/bad-request.error';
+import { NotFoundError } from './common/errors/notFound.error';
+import { BadRequestError } from './common/errors/badRequest.error';
 
 const app = express();
 
