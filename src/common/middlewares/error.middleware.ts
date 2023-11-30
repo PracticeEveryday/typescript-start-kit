@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors/custom.error';
-import { StatusCode } from '../errors/statusCode.enum';
+import { StatusCode } from '../dataType/statusCode.enum';
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
     res.header('Content-Type', 'application/json');
@@ -14,20 +14,20 @@ export const errorMiddleware = (error: unknown, _req: Request, res: Response, _n
 };
 
 const generateCodeAndBody = (error: unknown) => {
-    let statusCode = StatusCode.ERROR_INTERNAL_SERVER_ERROR;
+    let statusCode = StatusCode.INTERNAL_SERVER_ERROR;
     let message = '핸들링 할 수 없는 에러입니다. 확인 부탁드립니다 :)';
 
     if (error instanceof Error) {
-        statusCode = StatusCode.ERROR_INTERNAL_SERVER_ERROR;
+        statusCode = StatusCode.INTERNAL_SERVER_ERROR;
     }
 
     if (error instanceof CustomError) {
-        statusCode = error.statusCode || StatusCode.ERROR_INTERNAL_SERVER_ERROR;
+        statusCode = error.statusCode || StatusCode.INTERNAL_SERVER_ERROR;
         message = error.message;
     }
 
     if (error instanceof TypeError) {
-        statusCode = StatusCode.ERROR_BAD_REQUEST;
+        statusCode = StatusCode.BAD_REQUEST;
         message = error.message;
     }
 

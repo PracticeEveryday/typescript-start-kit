@@ -1,5 +1,0 @@
-export enum StatusCode {
-    ERROR_BAD_REQUEST = 400,
-    ERROR_NOT_FOUND = 404,
-    ERROR_INTERNAL_SERVER_ERROR = 500,
-}

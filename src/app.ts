@@ -4,9 +4,9 @@ import helmet from 'helmet';
 import express, { Request, Response } from 'express';
 
 import { errorMiddleware } from './common/middlewares/error.middleware';
-import { asyncWrapper } from './lib/utils/async-wrapper.util';
-import { NotFoundError } from './common/errors/notFound.error';
-import { BadRequestError } from './common/errors/badRequest.error';
+
+import * as CustomError from './common/errors';
+
 
 const app = express();
 
@@ -22,22 +22,17 @@ app.get('/', (_req: Request, res: Response): void => {
     });
 });
 
-app.get(
-    '/error',
-    asyncWrapper(async (_req: Request, _res: Response): Promise<void> => {
-        return new Promise(() => {
-            throw new Error('에러 테스트');
-        });
-    }),
-);
+app.get('/error', (_req: Request, _res: Response): void => {
+    throw new Error('에러 테스트');
+});
 
 app.get('/error/custom', (_req: Request, _res: Response): void => {
-    throw new BadRequestError('커스텀 에러 테스트');
+    throw new CustomError.BadRequest('커스텀 에러 테스트');
 });
 
 //에러 페이지 로드 404
 app.get('/*', (_req: Request, _res: Response): void => {
-    throw new NotFoundError('커스텀 에러 테스트 not found');
+    throw new CustomError.NotFound('커스텀 에러 테스트 not found');
 });
 
 app.use(errorMiddleware);
