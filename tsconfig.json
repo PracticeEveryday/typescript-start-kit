@@ -1,10 +1,7 @@
 {
-    "exclude": [
-        "**/*.test.ts"
-    ],
     "compilerOptions": {
         "target": "es2016",
-                // Strict mode (9)
+        // Strict mode (9)
         "strict": true,
         "alwaysStrict": true,
         "noImplicitAny": true,
