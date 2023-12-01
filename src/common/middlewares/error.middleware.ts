@@ -6,6 +6,8 @@ import logger from '../logger/logger';
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
     res.header('Content-Type', 'application/json');
+    logger.error(error as Error, 'test입니다.');
+
     const {statusCode, message} = generateCodeAndBody(error);
 
     res.status(statusCode).json({
@@ -20,7 +22,6 @@ const generateCodeAndBody = (error: unknown) => {
     if (error instanceof Error) {
         statusCode = StatusCode.INTERNAL_SERVER_ERROR;
         message = error.message || '핸들링 할 수 없는 에러입니다. 확인 부탁드립니다 :)';
-        logger.error(error as Error, error.message);
     }
 
     if (error instanceof CustomError) {
