@@ -13,10 +13,10 @@
 
 -   dev
 
-1. `git clone https://github.com/PracticeEveryday/typescript-start-kit.git`
-2. `cd typescript-start-kit`
-3. `yarn install`
-4. `yarn start:dev`
+1. git clone https://github.com/PracticeEveryday/typescript-start-kit.git
+2. cd typescript-start-kit
+3. yarn install
+4. yarn start:dev
 
 ### docker 
 1. build: docker build . -t test-app
