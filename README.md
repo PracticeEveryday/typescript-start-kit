@@ -4,7 +4,7 @@
 
 -   TypeScript Express 프레임워크를 사용하여 서버를 바로 실행시키는 Startkit입니다.
 
-### npx로
+### npx
 
 -   `npx typescript-startkit [repoName]`
     -   링크: https://www.npmjs.com/package/typescript-startkit
