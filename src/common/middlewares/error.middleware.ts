@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors';
 import { StatusCode } from '../dataType/statusCode.enum';
+import logger from '../logger/logger';
+
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
     res.header('Content-Type', 'application/json');
-    console.log('\x1b[33m%s\x1b[0m', error);
-
     const {statusCode, message} = generateCodeAndBody(error);
 
     res.status(statusCode).json({
@@ -20,6 +20,7 @@ const generateCodeAndBody = (error: unknown) => {
     if (error instanceof Error) {
         statusCode = StatusCode.INTERNAL_SERVER_ERROR;
         message = error.message || '핸들링 할 수 없는 에러입니다. 확인 부탁드립니다 :)';
+        logger.error(error as Error, error.message);
     }
 
     if (error instanceof CustomError) {
@@ -34,3 +35,4 @@ const generateCodeAndBody = (error: unknown) => {
 
     return { statusCode, message };
 };
+
