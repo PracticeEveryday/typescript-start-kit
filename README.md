@@ -18,13 +18,9 @@
 3. `yarn install`
 4. `yarn start:dev`
 
--   prod
-
-1. `git clone https://github.com/PracticeEveryday/typescript-start-kit.git`
-2. `cd typescript-start-kit`
-3. `yarn install`
-4. `yarn start:prod`
-
+### docker 
+1. build: docker build . -t test-app
+2. run: docker run -d -p 8080:8080 --name test-app
 ---
 
 ### Test API
@@ -63,6 +59,6 @@
 ```js
 {
   "errorCode": 404,
-  "errorMessage": "커스텀 에러 테스트 not found"
+  "errorMessage": "Not Found Endpoint"
 }
 ```
