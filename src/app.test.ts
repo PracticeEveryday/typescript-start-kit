@@ -18,7 +18,7 @@ describe('app.ts 라우터 테스트', () => {
             .get('/error');
 
         expect(res.statusCode).toEqual(StatusCode.INTERNAL_SERVER_ERROR);
-        expect(res.body).toHaveProperty('message', '에러 테스트');
+        expect(res.body).toHaveProperty('message', 'Error!');
     });
 
     test('GET /error/custom', async () => {
@@ -26,7 +26,7 @@ describe('app.ts 라우터 테스트', () => {
             .get('/error/custom');
 
         expect(res.statusCode).toEqual(StatusCode.BAD_REQUEST);
-        expect(res.body).toHaveProperty('message', '커스텀 에러 테스트');
+        expect(res.body).toHaveProperty('message', 'custom error!');
     });
 
     test('GET /asdf', async () => {

@@ -24,11 +24,11 @@ app.get('/', (_req: Request, res: Response): void => {
 });
 
 app.get('/error', (_req: Request, _res: Response): void => {
-    throw new Error('에러 테스트');
+    throw new Error('Error!');
 });
 
 app.get('/error/custom', (_req: Request, _res: Response): void => {
-    throw new CustomError.BadRequest('커스텀 에러 테스트');
+    throw new CustomError.BadRequest('custom error!');
 });
 
 //에러 페이지 로드 404
