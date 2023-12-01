@@ -27,8 +27,7 @@
 
 -   `GET /`
 
-```js
-// response
+```json
 {
   "message": "Hello, this is Node.js, Express.js and TypeScript."
 }
@@ -38,25 +37,16 @@
 
 -   `GET /error`
 
-```js
+```json
 {
   "errorCode": 500,
   "errorMessage": "에러 테스트"
 }
 ```
 
--   `GET /error/Custom`
-
-```js
-{
-  "errorCode": 400,
-  "errorMessage": "커스텀 에러 테스트"
-}
-```
-
 -   `GET /a`
 
-```js
+```json
 {
   "errorCode": 404,
   "errorMessage": "Not Found Endpoint"
