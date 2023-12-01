@@ -1,4 +1,4 @@
-import { StatusCode } from '../dataType/statusCode.enum';
+import { StatusCode } from '../dataType/enums/statusCode.enum';
 
 class CustomError extends Error {
     public statusCode: StatusCode;

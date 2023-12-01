@@ -1,7 +1,7 @@
 import { app } from './app';
 import request from 'supertest';
 
-import { StatusCode } from './common/dataType/statusCode.enum';
+import { StatusCode } from './common/dataType/enums/statusCode.enum';
 describe('app.ts 라우터 테스트', () => {
     test('GET /', async () => {
         const res = await request(app)

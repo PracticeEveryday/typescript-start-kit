@@ -7,7 +7,6 @@ const { colorize, combine } = winston.format;
 
 export const winstonLogger = () => {
     return winston.createLogger({
-
         transports: [
             new winston.transports.Console({
                 level: config.LOG_LEVEL,

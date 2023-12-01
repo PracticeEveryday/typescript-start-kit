@@ -6,7 +6,7 @@ import express, { Request, Response } from 'express';
 import { errorMiddleware } from './common/middlewares/error.middleware';
 
 import * as CustomError from './common/errors';
-import { StatusCode } from './common/dataType/statusCode.enum';
+import { StatusCode } from './common/dataType/enums/statusCode.enum';
 
 
 const app = express();

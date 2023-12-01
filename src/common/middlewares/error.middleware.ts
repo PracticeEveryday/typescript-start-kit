@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors';
-import { StatusCode } from '../dataType/statusCode.enum';
+import { StatusCode } from '../dataType/enums/statusCode.enum';
 import logger from '../logger/logger';
 
 
@@ -9,7 +9,6 @@ export const errorMiddleware = (error: unknown, _req: Request, res: Response, _n
     logger.error(error as Error, 'test입니다.');
 
     const {statusCode, message} = generateCodeAndBody(error);
-
     res.status(statusCode).json({
         message
     });
