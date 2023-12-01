@@ -1,4 +1,6 @@
 {
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"],
     "compilerOptions": {
         "target": "es2016",
         // Strict mode (9)
@@ -31,10 +33,11 @@
         "module": "commonjs",
 
         "sourceMap": true,
+        "rootDir": "./",
         "outDir": "./dist",
         "skipLibCheck": true,
         "esModuleInterop": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true
-    }
+    },
 }
