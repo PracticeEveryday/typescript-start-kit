@@ -1,12 +1,17 @@
+import logger from '../logger/logger';
+import config from '../../config';
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors';
 import { StatusCode } from '../dataType/enums/statusCode.enum';
-import logger from '../logger/logger';
+import { NodeEnvEnum } from '../dataType/enums/nodeEnv.enum';
+
 
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
     res.header('Content-Type', 'application/json');
-    logger.error(error as Error, 'test입니다.');
+    if (config.NODE_ENV !== NodeEnvEnum.TEST){
+        logger.error(error as Error);
+    }
 
     const {statusCode, message} = generateCodeAndBody(error);
     res.status(statusCode).json({
@@ -20,7 +25,7 @@ const generateCodeAndBody = (error: unknown) => {
 
     if (error instanceof Error) {
         statusCode = StatusCode.INTERNAL_SERVER_ERROR;
-        message = error.message || '핸들링 할 수 없는 에러입니다. 확인 부탁드립니다 :)';
+        message = error.message;
     }
 
     if (error instanceof CustomError) {
