@@ -8,7 +8,6 @@ import { StackInfo } from '../dataType/types/stackInfo.type';
 
 export class Logger {
     private readonly winstonLogger: winston.Logger;
-
     constructor() {
         FileUtil.createFolderIfNotExists('./logs');
         this.winstonLogger = winstonLogger();
@@ -21,13 +20,23 @@ export class Logger {
     public warn(error: Error, ...args: unknown[]) {
         this.winstonLogger.warn(this.getGeneratedLogLocation(error.stack));
         this.winstonLogger.warn(colors.red(this.generateLogMsg(args)));
-        this.displayErrorStack(error.stack!);
+        this.displayWarnStack(error.stack!);
     }
 
     public error(error: Error, ...args: unknown[]) {
         this.winstonLogger.error(this.getGeneratedLogLocation(error.stack));
         this.winstonLogger.error(colors.red(this.generateLogMsg(args)));
         this.displayErrorStack(error.stack!);
+    }
+
+    /**
+     * 워닝 스택을 정리하여 보여줍니다.
+     */
+    private displayWarnStack(errorStack: string) {
+        const errorLines: string[] = errorStack.split('\n');
+
+        this.winstonLogger.warn(colors.bgRed('Stack Trace:'));
+        errorLines.forEach(line => this.winstonLogger.error(colors.yellow(line.trim())));
     }
 
 

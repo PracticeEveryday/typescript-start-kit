@@ -4,19 +4,29 @@ import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors';
 import { StatusCode } from '../dataType/enums/statusCode.enum';
 import { NodeEnvEnum } from '../dataType/enums/nodeEnv.enum';
-
+import { ErrorEnum } from '../dataType/enums/error.enum';
 
 
 export const errorMiddleware = (error: unknown, _req: Request, res: Response, _next: NextFunction) => {
     res.header('Content-Type', 'application/json');
     if (config.NODE_ENV !== NodeEnvEnum.TEST){
-        logger.error(error as Error);
+        consoleByErrorType(error);
     }
 
     const {statusCode, message} = generateCodeAndBody(error);
     res.status(statusCode).json({
         message
     });
+};
+
+const consoleByErrorType = (error: unknown) => {
+    if (error instanceof CustomError) {
+        error.errorType === ErrorEnum.WARN?  logger.warn(error) : logger.error(error);
+    } else if (error instanceof TypeError) {
+        logger.warn(error);
+    } else {
+        logger.error(error as Error);
+    }
 };
 
 const generateCodeAndBody = (error: unknown) => {

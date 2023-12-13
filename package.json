@@ -7,8 +7,8 @@
     "bin": "./bin/index.js",
     "scripts": {
         "prepare": "[ ! -d .husky ] && husky install || echo \"Husky directory already exists\"",
-        "test:unit": "NODE_ENV=test jest --config jest-unit.config.js --passWithNoTests",
-        "test:e2e": "NODE_ENV=test jest --config jest-e2e.config.js --passWithNoTests",
+        "test:unit": "NODE_ENV=test jest --config jest-unit.config.js --detectOpenHandles",
+        "test:e2e": "NODE_ENV=test jest --config jest-e2e.config.js --detectOpenHandles",
         "lint-fix": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
         "build": "rm -rf dist && npx tsc --project tsconfig.json",
         "postinstall": "[ ! -d .husky ] && npx husky install || echo \"Husky directory already exists\"",
