@@ -1,7 +1,5 @@
 import path from 'path';
 import winston from 'winston';
-
-import { FileUtil } from '../../lib/utils/file.util';
 import { winstonLogger } from './winstonLogger';
 import colors from 'colors';
 import { StackInfo } from '../dataType/types/stackInfo.type';
@@ -9,7 +7,6 @@ import { StackInfo } from '../dataType/types/stackInfo.type';
 export class Logger {
     private readonly winstonLogger: winston.Logger;
     constructor() {
-        FileUtil.createFolderIfNotExists('./logs');
         this.winstonLogger = winstonLogger();
     }
 
