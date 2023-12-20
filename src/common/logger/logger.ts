@@ -66,7 +66,7 @@ export class Logger {
      */
     private getStackInfo (stackIdx: number, stack?: string): StackInfo {
         if(!stack){
-            stack = new Error().stack!;
+            return {line: '', pos: '', file: ''};
         }
         const stackList = stack.split('\n');
 
