@@ -18,13 +18,11 @@ export class Logger {
     }
 
     public warn(error: Error, ...args: unknown[]) {
-        this.winstonLogger.warn(this.getGeneratedLogLocation(error.stack));
         this.winstonLogger.warn(colors.red(this.generateLogMsg(args)));
         this.displayWarnStack(error.stack!);
     }
 
     public error(error: Error, ...args: unknown[]) {
-        this.winstonLogger.error(this.getGeneratedLogLocation(error.stack));
         this.winstonLogger.error(colors.red(this.generateLogMsg(args)));
         this.displayErrorStack(error.stack!);
     }
@@ -33,10 +31,8 @@ export class Logger {
      * 워닝 스택을 정리하여 보여줍니다.
      */
     private displayWarnStack(errorStack: string) {
-        const errorLines: string[] = errorStack.split('\n');
-
-        this.winstonLogger.warn(colors.bgRed('Stack Trace:'));
-        errorLines.forEach(line => this.winstonLogger.error(colors.yellow(line.trim())));
+        this.winstonLogger.warn(colors.bgRed(`Stack Trace: ${this.getGeneratedLogLocation(errorStack)}`));
+        this.winstonLogger.warn(colors.yellow(errorStack.trim()));
     }
 
 
@@ -44,10 +40,8 @@ export class Logger {
      * 에러 스택을 정리하여 보여줍니다.
      */
     private displayErrorStack(errorStack: string) {
-        const errorLines: string[] = errorStack.split('\n');
-
-        this.winstonLogger.error(colors.bgRed('Stack Trace:'));
-        errorLines.forEach(line => this.winstonLogger.error(colors.red(line.trim())));
+        this.winstonLogger.error(colors.bgRed(`Stack Trace: ${this.getGeneratedLogLocation(errorStack)}`));
+        this.winstonLogger.error(colors.red(errorStack.trim()));
     }
 
 
@@ -57,9 +51,7 @@ export class Logger {
      * -> Body, Result 등 결과값을 함께 넘겨주면 문자로 변경, 합친 후 반환합니다.
      */
     private generateLogMsg(logArguments: unknown[]): string {
-        const messages =  logArguments.map(arg => (typeof arg === 'object') ? JSON.stringify(arg) : arg).join('\t');
-
-        return `total message: ${messages}`;
+        return logArguments.map(arg => (typeof arg === 'object') ? JSON.stringify(arg) : arg).join('\t');
     }
 
 
@@ -67,7 +59,7 @@ export class Logger {
         const GENERATED_LOG_IDX_NUM = 1;
         const stackInfo = this.getStackInfo(GENERATED_LOG_IDX_NUM, stack);
 
-        return `generated log file path: ${stackInfo.file}:${stackInfo.line}:${stackInfo.pos}`;
+        return `${stackInfo.file}:${stackInfo.line}:${stackInfo.pos}`;
 
     }
 
