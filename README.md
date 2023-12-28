@@ -39,8 +39,15 @@
 
 ```json
 {
-  "errorCode": 500,
-  "errorMessage": "Error!"
+  "message": "Error!"
+}
+```
+
+-   `GET /error/custom`
+
+```json
+{
+  "message": "custom error!"
 }
 ```
 
@@ -48,7 +55,6 @@
 
 ```json
 {
-  "errorCode": 404,
-  "errorMessage": "Not Found Endpoint"
+  "message": "Not Found Endpoint"
 }
 ```
